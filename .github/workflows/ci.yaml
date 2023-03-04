@@ -2,8 +2,6 @@ name: Lint and Test Charts
 
 on:
   pull_request:
-    paths:
-      - 'charts/**'
 
 jobs:
   lint-chart:
@@ -26,3 +24,29 @@ jobs:
         uses: actions/checkout@v1
       - name: Run helm-docs
         run: .github/helm-docs.sh
+
+  kubeconform-chart:
+    runs-on: ubuntu-latest
+    needs:
+      - lint-chart
+      - lint-docs
+    strategy:
+      matrix:
+        k8s:
+          - 1.26.2
+          - 1.25.6
+          - 1.24.10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Validate Helm Chart
+        uses: docker://ghcr.io/wdaan/helm-kubeconform-action:v0.1.7
+        env:
+          ADDITIONAL_SCHEMA_PATHS: |
+            schemas/{{ .ResourceKind }}.json
+          CHARTS_DIRECTORY: "charts"
+          KUBECONFORM_STRICT: "true"
+          HELM_UPDATE_DEPENDENCIES: "true"
+          IGNORE_MISSING_SCHEMAS: "false"
+          KUBERNETES_VERSION: "${{ matrix.k8s }}"
