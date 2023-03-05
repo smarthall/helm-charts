@@ -50,9 +50,10 @@ A Helm chart for deploying Mealie to a Kubernetes cluster.
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| storage.className | string | `""` |  |
-| storage.enabled | bool | `false` |  |
-| storage.size | string | `"8G"` |  |
+| storage.accessMode | string | `"ReadWriteMany"` | The accessMode that is supported. If using ReadWriteMany multiple pods will be created. If using ReadWriteOnce a single pod will be used. |
+| storage.className | string | `""` | The storage class to use |
+| storage.enabled | bool | `false` | Enable storage that isn't emphemeral |
+| storage.size | string | `"8G"` | The size of the storage to allocate |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------
