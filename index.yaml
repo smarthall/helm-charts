@@ -1,0 +1,17 @@
+apiVersion: v1
+entries:
+  mealie:
+  - apiVersion: v2
+    appVersion: v1.0.0beta-5
+    created: "2023-03-05T00:47:06.321056987Z"
+    description: A Helm chart for Kubernetes
+    digest: 2812a756731cacb32b954a98fc99de1e6c166af0e68ba4706594534dfe2bd29a
+    maintainers:
+    - email: helm@danielhall.me
+      name: smarthall
+    name: mealie
+    type: application
+    urls:
+    - https://github.com/smarthall/helm-charts/releases/download/mealie-0.0.5/mealie-0.0.5.tgz
+    version: 0.0.5
+generated: "2023-03-05T00:47:06.321061387Z"
