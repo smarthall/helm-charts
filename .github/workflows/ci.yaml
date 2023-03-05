@@ -6,6 +6,8 @@ on:
 jobs:
   lint-chart:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.list-changed.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -24,7 +26,7 @@ jobs:
         run: |
           changed=$(ct list-changed --target-branch ${{ github.event.repository.default_branch }})
           if [[ -n "$changed" ]]; then
-            echo "::set-output name=changed::true"
+            echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
   kubeconform-chart:
@@ -78,7 +80,7 @@ jobs:
           node_image: kindest/node:${{ matrix.k8s }}
 
       - name: Run chart-testing (install)
-        run: ct install
+        run: ct install --target-branch ${{ github.event.repository.default_branch }}
 
   summary-test:
     runs-on: ubuntu-latest
