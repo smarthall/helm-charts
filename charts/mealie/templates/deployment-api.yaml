@@ -20,6 +20,7 @@ spec:
       labels:
         {{- include "mealie.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: api
+        mealie.danielhall.me/is-api: "true"
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

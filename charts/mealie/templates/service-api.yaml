@@ -13,4 +13,4 @@ spec:
       name: http
   selector:
     {{- include "mealie.selectorLabels" . | nindent 4 }}
-    app.kubernetes.io/component: api
+    mealie.danielhall.me/is-api: "true"

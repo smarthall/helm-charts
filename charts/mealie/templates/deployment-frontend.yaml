@@ -20,6 +20,7 @@ spec:
       labels:
         {{- include "mealie.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: frontend
+        mealie.danielhall.me/is-frontend: "true"
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

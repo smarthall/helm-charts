@@ -13,4 +13,4 @@ spec:
       name: http
   selector:
     {{- include "mealie.selectorLabels" . | nindent 4 }}
-    app.kubernetes.io/component: frontend
+    mealie.danielhall.me/is-frontend: "true"
