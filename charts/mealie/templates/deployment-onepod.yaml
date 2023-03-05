@@ -1,4 +1,4 @@
-{{- if not .Values.storage.enabled -}}
+{{- if not (and .Values.storage.enabled (eq .Values.storage.accessMode "ReadWriteMany")) -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

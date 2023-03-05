@@ -101,7 +101,7 @@ Create the name of the service account to use
   imagePullPolicy: {{ .Values.image.pullPolicy }}
   env:
     - name: API_URL
-      value: "http://{{ if .Values.storage.enabled }}{{ include "mealie.fullname" . }}-api{{ else }}localhost{{ end }}:{{ .Values.api.service.port }}"
+      value: "http://{{ if and .Values.storage.enabled (eq .Values.storage.accessMode "ReadWriteMany") }}{{ include "mealie.fullname" . }}-api{{ else }}localhost{{ end }}:{{ .Values.api.service.port }}"
     {{- range $key, $value := .Values.frontend.env }}
     - name: "{{ $key }}"
       value: "{{ $value }}"
