@@ -78,17 +78,17 @@ Create the name of the service account to use
   - name: data
     mountPath: /app/data
   ports:
-  - name: http
+  - name: api
     containerPort: {{ .Values.api.service.port }}
     protocol: TCP
   livenessProbe:
     httpGet:
       path: /api/app/about
-      port: http
+      port: api
   readinessProbe:
     httpGet:
       path: /api/app/about
-      port: http
+      port: api
   resources:
   {{- toYaml .Values.resources | nindent 4 }}
 {{- end }}
@@ -110,17 +110,17 @@ Create the name of the service account to use
     - name: data
       mountPath: /app/data
   ports:
-    - name: http
+    - name: frontend
       containerPort: {{ .Values.frontend.service.port }}
       protocol: TCP
   livenessProbe:
     httpGet:
       path: /
-      port: http
+      port: frontend
   readinessProbe:
     httpGet:
       path: /
-      port: http
+      port: frontend
   resources:
     {{- toYaml .Values.resources | nindent 4 }}
 {{- end -}}

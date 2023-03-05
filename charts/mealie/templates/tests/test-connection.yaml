@@ -11,7 +11,7 @@ spec:
     - name: wget-frontend
       image: busybox
       command: ['wget']
-      args: ['http://{{ include "mealie.fullname" . }}-frontend:{{ .Values.frontend.service.port }}/']
+      args: ['http://{{ include "mealie.fullname" . }}-frontend:{{ .Values.frontend.service.port }}/favicon.ico']
     - name: wget-api
       image: busybox
       command: ['wget']

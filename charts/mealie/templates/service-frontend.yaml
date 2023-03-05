@@ -8,9 +8,9 @@ spec:
   type: {{ .Values.frontend.service.type }}
   ports:
     - port: {{ .Values.frontend.service.port }}
-      targetPort: http
+      targetPort: frontend
       protocol: TCP
-      name: http
+      name: frontend
   selector:
     {{- include "mealie.selectorLabels" . | nindent 4 }}
     mealie.danielhall.me/is-frontend: "true"

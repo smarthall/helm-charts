@@ -8,9 +8,9 @@ spec:
   type: {{ .Values.api.service.type }}
   ports:
     - port: {{ .Values.api.service.port }}
-      targetPort: http
+      targetPort: api
       protocol: TCP
-      name: http
+      name: api
   selector:
     {{- include "mealie.selectorLabels" . | nindent 4 }}
     mealie.danielhall.me/is-api: "true"
