@@ -1,0 +1,4 @@
+---
+storage:
+  enabled: true
+  className: example-class
