@@ -60,3 +60,35 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "mealie.apiContainer" -}}
+- name: {{ .Chart.Name }}
+  securityContext:
+  {{- toYaml .Values.securityContext | nindent 4 }}
+  image: "{{ .Values.image.repository }}:{{ .Values.image.tagPrefixApi }}{{ .Values.image.tag | default .Chart.AppVersion }}"
+  imagePullPolicy: {{ .Values.image.pullPolicy }}
+  env:
+  - name: BASE_URL
+    value: "{{ if .Values.ingress.enabled }}https://{{ (index .Values.ingress.hosts 0).host }}{{ else }}http://localhost:8080{{ end }}"
+  {{- range $key, $value := .Values.api.env }}
+  - name: "{{ $key }}"
+    value: "{{ $value }}"
+  {{- end }}
+  volumeMounts:
+  - name: data
+    mountPath: /app/data
+  ports:
+  - name: http
+    containerPort: {{ .Values.api.service.port }}
+    protocol: TCP
+  livenessProbe:
+    httpGet:
+      path: /api/app/about
+      port: http
+  readinessProbe:
+    httpGet:
+      path: /api/app/about
+      port: http
+  resources:
+  {{- toYaml .Values.resources | nindent 4 }}
+{{- end }}
