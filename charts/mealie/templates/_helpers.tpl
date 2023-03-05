@@ -62,7 +62,7 @@ Create the name of the service account to use
 {{- end }}
 
 {{- define "mealie.apiContainer" -}}
-- name: {{ .Chart.Name }}
+- name: api
   securityContext:
   {{- toYaml .Values.securityContext | nindent 4 }}
   image: "{{ .Values.image.repository }}:{{ .Values.image.tagPrefixApi }}{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -94,7 +94,7 @@ Create the name of the service account to use
 {{- end }}
 
 {{- define "mealie.frontendContainer" -}}
-- name: {{ .Chart.Name }}
+- name: frontend
   securityContext:
     {{- toYaml .Values.securityContext | nindent 4 }}
   image: "{{ .Values.image.repository }}:{{ .Values.image.tagPrefixFrontend }}{{ .Values.image.tag | default .Chart.AppVersion }}"
