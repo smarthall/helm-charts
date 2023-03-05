@@ -92,3 +92,35 @@ Create the name of the service account to use
   resources:
   {{- toYaml .Values.resources | nindent 4 }}
 {{- end }}
+
+{{- define "mealie.frontendContainer" -}}
+- name: {{ .Chart.Name }}
+  securityContext:
+    {{- toYaml .Values.securityContext | nindent 4 }}
+  image: "{{ .Values.image.repository }}:{{ .Values.image.tagPrefixFrontend }}{{ .Values.image.tag | default .Chart.AppVersion }}"
+  imagePullPolicy: {{ .Values.image.pullPolicy }}
+  env:
+    - name: API_URL
+      value: "http://{{ include "mealie.fullname" . }}-api:{{ .Values.api.service.port }}"
+    {{- range $key, $value := .Values.frontend.env }}
+    - name: "{{ $key }}"
+      value: "{{ $value }}"
+    {{- end }}
+  volumeMounts:
+    - name: data
+      mountPath: /app/data
+  ports:
+    - name: http
+      containerPort: {{ .Values.frontend.service.port }}
+      protocol: TCP
+  livenessProbe:
+    httpGet:
+      path: /
+      port: http
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http
+  resources:
+    {{- toYaml .Values.resources | nindent 4 }}
+{{- end -}}
