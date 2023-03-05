@@ -16,6 +16,7 @@ A Helm chart for Kubernetes
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | api.env | object | `{}` |  |
+| api.replicas | int | `1` | The number of api replicas to run. Only set above 1 if using postgres |
 | api.service.port | int | `9000` |  |
 | api.service.type | string | `"ClusterIP"` |  |
 | autoscaling.enabled | bool | `false` |  |
@@ -23,14 +24,15 @@ A Helm chart for Kubernetes
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | frontend.env | object | `{}` |  |
+| frontend.replicas | int | `1` | The number of frontend replicas to run |
 | frontend.service.port | int | `3000` |  |
 | frontend.service.type | string | `"ClusterIP"` |  |
 | fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"hkotel/mealie"` |  |
-| image.tag | string | `""` |  |
-| image.tagPrefixApi | string | `"api-"` |  |
-| image.tagPrefixFrontend | string | `"frontend-"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | The pull policy for mealie images |
+| image.repository | string | `"hkotel/mealie"` | The repository for docker images to use |
+| image.tag | string | `""` | Override the default app version with another version |
+| image.tagPrefixApi | string | `"api-"` | The tag prefix for the API images. The app version number will be appended to this. |
+| image.tagPrefixFrontend | string | `"frontend-"` | The tag prefix for the frontend docker images. The app version number will be appended to this. |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
@@ -43,7 +45,6 @@ A Helm chart for Kubernetes
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
 | serviceAccount.annotations | object | `{}` |  |
