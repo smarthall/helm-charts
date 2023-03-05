@@ -4,8 +4,7 @@ ingress:
   className: nginx
 
   annotations:
-    this-is-a-test-annotation: true
-    test-numbers-in-annotations: 4
+    this-is-a-test-annotation: "testing"
 
   hosts:
     - host: mealie.example.com
