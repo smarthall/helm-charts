@@ -80,7 +80,7 @@ jobs:
           node_image: kindest/node:${{ matrix.k8s }}
 
       - name: Run chart-testing (install)
-        run: ct install --target-branch ${{ github.event.repository.default_branch }}
+        run: ct install --target-branch ${{ github.event.repository.default_branch }} --upgrade
 
   summary-test:
     runs-on: ubuntu-latest
