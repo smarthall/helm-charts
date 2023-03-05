@@ -50,3 +50,15 @@ jobs:
           HELM_UPDATE_DEPENDENCIES: "true"
           IGNORE_MISSING_SCHEMAS: "false"
           KUBERNETES_VERSION: "${{ matrix.k8s }}"
+
+  summary-test:
+    runs-on: ubuntu-latest
+    needs: kubeconform-chart
+    if: always()
+    steps:
+      - name: All tests ok
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Some tests failed
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
