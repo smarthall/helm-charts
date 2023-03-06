@@ -3,6 +3,19 @@ entries:
   mealie:
   - apiVersion: v2
     appVersion: v1.0.0beta-5
+    created: "2023-03-06T10:16:38.80034743Z"
+    description: A Helm chart for deploying Mealie to a Kubernetes cluster.
+    digest: 1dd4af24734a84a97d46833ef3992722bd4719dc89b929830f6f13a037bc15c4
+    maintainers:
+    - email: helm@danielhall.me
+      name: smarthall
+    name: mealie
+    type: application
+    urls:
+    - https://github.com/smarthall/helm-charts/releases/download/mealie-0.0.7/mealie-0.0.7.tgz
+    version: 0.0.7
+  - apiVersion: v2
+    appVersion: v1.0.0beta-5
     created: "2023-03-05T02:53:49.887854978Z"
     description: A Helm chart for Kubernetes
     digest: 5faa31b45e2ea11203d2e8a01b34cb783a60458cfb22af037dfed52f32bbccc9
@@ -27,4 +40,4 @@ entries:
     urls:
     - https://github.com/smarthall/helm-charts/releases/download/mealie-0.0.5/mealie-0.0.5.tgz
     version: 0.0.5
-generated: "2023-03-05T02:53:49.887866578Z"
+generated: "2023-03-06T10:16:38.80035643Z"
