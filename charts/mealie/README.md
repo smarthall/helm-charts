@@ -1,8 +1,8 @@
 # mealie
 
-![Version: 0.0.6](https://img.shields.io/badge/Version-0.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.0.0beta-5](https://img.shields.io/badge/AppVersion-v1.0.0beta--5-informational?style=flat-square)
+![Version: 0.0.7](https://img.shields.io/badge/Version-0.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.0.0beta-5](https://img.shields.io/badge/AppVersion-v1.0.0beta--5-informational?style=flat-square)
 
-A Helm chart for Kubernetes
+A Helm chart for deploying Mealie to a Kubernetes cluster.
 
 ## Maintainers
 
@@ -50,9 +50,10 @@ A Helm chart for Kubernetes
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| storage.className | string | `""` |  |
-| storage.enabled | bool | `false` |  |
-| storage.size | string | `"8G"` |  |
+| storage.accessMode | string | `"ReadWriteMany"` | The accessMode that is supported. If using ReadWriteMany multiple pods will be created. If using ReadWriteOnce a single pod will be used. |
+| storage.className | string | `""` | The storage class to use |
+| storage.enabled | bool | `false` | Enable storage that isn't emphemeral |
+| storage.size | string | `"8G"` | The size of the storage to allocate |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------

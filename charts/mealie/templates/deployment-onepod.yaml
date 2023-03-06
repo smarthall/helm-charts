@@ -1,8 +1,8 @@
-{{- if and .Values.storage.enabled (eq .Values.storage.accessMode "ReadWriteMany") -}}
+{{- if not (and .Values.storage.enabled (eq .Values.storage.accessMode "ReadWriteMany")) -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mealie.fullname" . }}-api
+  name: {{ include "mealie.fullname" . }}
   labels:
     {{- include "mealie.labels" . | nindent 4 }}
 spec:
@@ -20,8 +20,9 @@ spec:
       {{- end }}
       labels:
         {{- include "mealie.selectorLabels" . | nindent 8 }}
-        app.kubernetes.io/component: api
+        app.kubernetes.io/component: mealie
         mealie.danielhall.me/is-api: "true"
+        mealie.danielhall.me/is-frontend: "true"
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -32,10 +33,10 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: {{ include "mealie.fullname" . }}-data
+          emptyDir: {}
       containers:
       {{- include "mealie.apiContainer" . | nindent 8 }}
+      {{- include "mealie.frontendContainer" . | nindent 8 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

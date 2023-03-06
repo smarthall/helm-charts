@@ -5,7 +5,7 @@ metadata:
   name: {{ include "mealie.fullname" . }}-data
 spec:
   accessModes:
-    - ReadWriteMany
+    - {{ .Values.storage.accessMode }}
   volumeMode: Filesystem
   resources:
     requests:

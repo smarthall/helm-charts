@@ -60,3 +60,67 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "mealie.apiContainer" -}}
+- name: api
+  securityContext:
+  {{- toYaml .Values.securityContext | nindent 4 }}
+  image: "{{ .Values.image.repository }}:{{ .Values.image.tagPrefixApi }}{{ .Values.image.tag | default .Chart.AppVersion }}"
+  imagePullPolicy: {{ .Values.image.pullPolicy }}
+  env:
+  - name: BASE_URL
+    value: "{{ if .Values.ingress.enabled }}https://{{ (index .Values.ingress.hosts 0).host }}{{ else }}http://localhost:8080{{ end }}"
+  {{- range $key, $value := .Values.api.env }}
+  - name: "{{ $key }}"
+    value: "{{ $value }}"
+  {{- end }}
+  volumeMounts:
+  - name: data
+    mountPath: /app/data
+  ports:
+  - name: api
+    containerPort: {{ .Values.api.service.port }}
+    protocol: TCP
+  livenessProbe:
+    httpGet:
+      path: /api/app/about
+      port: api
+  readinessProbe:
+    httpGet:
+      path: /api/app/about
+      port: api
+  resources:
+  {{- toYaml .Values.resources | nindent 4 }}
+{{- end }}
+
+{{- define "mealie.frontendContainer" -}}
+- name: frontend
+  securityContext:
+    {{- toYaml .Values.securityContext | nindent 4 }}
+  image: "{{ .Values.image.repository }}:{{ .Values.image.tagPrefixFrontend }}{{ .Values.image.tag | default .Chart.AppVersion }}"
+  imagePullPolicy: {{ .Values.image.pullPolicy }}
+  env:
+    - name: API_URL
+      value: "http://{{ if and .Values.storage.enabled (eq .Values.storage.accessMode "ReadWriteMany") }}{{ include "mealie.fullname" . }}-api{{ else }}localhost{{ end }}:{{ .Values.api.service.port }}"
+    {{- range $key, $value := .Values.frontend.env }}
+    - name: "{{ $key }}"
+      value: "{{ $value }}"
+    {{- end }}
+  volumeMounts:
+    - name: data
+      mountPath: /app/data
+  ports:
+    - name: frontend
+      containerPort: {{ .Values.frontend.service.port }}
+      protocol: TCP
+  livenessProbe:
+    httpGet:
+      path: /
+      port: frontend
+  readinessProbe:
+    httpGet:
+      path: /
+      port: frontend
+  resources:
+    {{- toYaml .Values.resources | nindent 4 }}
+{{- end -}}
