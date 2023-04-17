@@ -1,5 +1,26 @@
 apiVersion: v1
 entries:
+  frigate:
+  - apiVersion: v2
+    appVersion: 0.12.0
+    created: "2023-04-17T06:14:19.203938146Z"
+    description: NVR With Realtime Object Detection for IP Cameras. Forked from https://github.com/blakeblackshear/blakeshome-charts
+    digest: 4aa4f95a2e9ea29e3a3f37fb6808f91c47fd3a60017df9b823ed600a432f6808
+    home: https://github.com/smarthall/helm-charts/tree/main/charts/frigate
+    icon: https://github.com/blakeblackshear/frigate/blob/master/docs/static/img/frigate.png
+    keywords:
+    - tensorflow
+    - coral
+    - ml
+    maintainers:
+    - email: helm@danielhall.me
+      name: smarthall
+    name: frigate
+    sources:
+    - https://github.com/blakeblackshear/frigate
+    urls:
+    - https://github.com/smarthall/helm-charts/releases/download/frigate-0.12.0/frigate-0.12.0.tgz
+    version: 0.12.0
   mealie:
   - apiVersion: v2
     appVersion: v1.0.0beta-5
@@ -40,4 +61,4 @@ entries:
     urls:
     - https://github.com/smarthall/helm-charts/releases/download/mealie-0.0.5/mealie-0.0.5.tgz
     version: 0.0.5
-generated: "2023-03-06T10:16:38.80035643Z"
+generated: "2023-04-17T06:14:19.203947746Z"
