@@ -37,20 +37,30 @@ spec:
   externalTrafficPolicy: {{ .Values.service.externalTrafficPolicy }}
   {{- end }}
   ports:
+  {{- if .Values.service.http.enabled }}
     - name: http
-      port: {{ .Values.service.port }}
+      port: {{ .Values.service.http.port }}
       protocol: TCP
       targetPort: http
-{{ if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
-      nodePort: {{.Values.service.nodePort}}
-{{ end }}
+  {{- end }}
+  {{- if .Values.service.rtmp.enabled }}
     - name: rtmp
-      port: 1935
+      port: {{ .Values.service.rtmp.port }}
       protocol: TCP
       targetPort: rtmp
-{{ if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
-      nodePort: {{.Values.service.nodePort}}
-{{ end }}
+  {{- end }}
+  {{- if .Values.service.rtsp.enabled }}
+    - name: rtsp
+      port: {{ .Values.service.rtsp.port }}
+      protocol: TCP
+      targetPort: rtsp
+  {{- end }}
+  {{- if .Values.service.webrtc.enabled }}
+    - name: webrtc
+      port: {{ .Values.service.webrtc.port }}
+      protocol: TCP
+      targetPort: webrtc
+  {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "frigate.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

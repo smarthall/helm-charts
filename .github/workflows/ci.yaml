@@ -87,7 +87,7 @@ jobs:
           helm upgrade --namespace nfs-provisioner --create-namespace --install --version=1.5.0 nfs-provisioner nfs-ganesha-server-and-external-provisioner/nfs-server-provisioner
 
       - name: Run chart-testing (install)
-        run: ct install --target-branch ${{ github.event.repository.default_branch }} --upgrade
+        run: ct install --target-branch ${{ github.event.repository.default_branch }}
 
   summary-test:
     runs-on: ubuntu-latest

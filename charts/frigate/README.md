@@ -1,6 +1,6 @@
 # frigate
 
-![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![AppVersion: 0.12.0](https://img.shields.io/badge/AppVersion-0.12.0-informational?style=flat-square)
+![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![AppVersion: 0.12.0](https://img.shields.io/badge/AppVersion-0.12.0-informational?style=flat-square)
 
 NVR With Realtime Object Detection for IP Cameras. Forked from https://github.com/blakeblackshear/blakeshome-charts
 
@@ -60,10 +60,17 @@ NVR With Realtime Object Detection for IP Cameras. Forked from https://github.co
 | resources | object | `{}` | Set resource limits/requests for the Pod(s) |
 | securityContext | object | `{}` | Set Security Context |
 | service.annotations | object | `{}` |  |
+| service.http.enabled | bool | `true` | If you want to disable HTTP for some reason, do it here |
+| service.http.port | int | `5000` | Port to host the HTTP services on |
 | service.labels | object | `{}` |  |
 | service.loadBalancerIP | string | `nil` | Set specific IP address for LoadBalancer. `service.type` must be set to `LoadBalancer` |
-| service.port | int | `5000` | Port the Service should communicate on |
+| service.rtmp.enabled | bool | `false` | Expose RTMP in the service |
+| service.rtmp.port | int | `1935` | Port to host the RTMP on |
+| service.rtsp.enabled | bool | `false` | Expose RTSP in the service |
+| service.rtsp.port | int | `8554` | Port to host the RTSP on |
 | service.type | string | `"ClusterIP"` | Type of Service to use |
+| service.webrtc.enabled | bool | `false` | Expose WebRTC in the service |
+| service.webrtc.port | int | `8555` | Port to host the WebRTC on |
 | shmSize | string | `"1Gi"` | amount of shared memory to use for caching |
 | strategyType | string | `"Recreate"` | upgrade strategy type (e.g. Recreate or RollingUpdate) |
 | tolerations | list | `[]` | Node toleration configuration |
