@@ -11,5 +11,5 @@ spec:
     - name: wget-frontend
       image: busybox
       command: ['wget']
-      args: ['http://{{ include "frigate.fullname" . }}:{{ .Values.service.port }}/api']
+      args: ['-q', '-O-', 'http://{{ include "frigate.fullname" . }}:{{ .Values.service.http.port }}/api']
   restartPolicy: Never
