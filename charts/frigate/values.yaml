@@ -83,12 +83,27 @@ probes:
 service:
   # -- Type of Service to use
   type: ClusterIP
-  # -- Port the Service should communicate on
-  port: 5000
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
+  http:
+    # -- Port to host the HTTP services on
+    port: 5000
+    # -- If you want to disable HTTP for some reason, do it here
+    enabled: true
+  rtmp:
+    # -- Port to host the RTMP on
+    port: 1935
+    # -- Expose RTMP in the service
+    enabled: false
+  rtsp:
+    # -- Port to host the RTSP on
+    port: 8554
+    # -- Expose RTSP in the service
+    enabled: false
+  webrtc:
+    # -- Port to host the WebRTC on
+    port: 8555
+    # -- Expose WebRTC in the service
+    enabled: false
+
   ## Provide any additional annotations which may be required. This can be used to
   ## set the LoadBalancer service type to internal only.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
