@@ -2,13 +2,13 @@ apiVersion: v2
 appVersion: "0.12.0"
 description: NVR With Realtime Object Detection for IP Cameras. Forked from https://github.com/blakeblackshear/blakeshome-charts
 name: frigate
-version: 1.0.0
+version: 1.0.2
 keywords:
   - tensorflow
   - coral
   - ml
 home: https://github.com/smarthall/helm-charts/tree/main/charts/frigate
-icon: https://github.com/blakeblackshear/frigate/blob/master/docs/static/img/frigate.png
+icon: https://github.com/blakeblackshear/frigate/blob/master/docs/static/img/frigate.png?raw=true
 sources:
   - https://github.com/blakeblackshear/frigate
 maintainers:
