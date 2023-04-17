@@ -3,6 +3,26 @@ entries:
   frigate:
   - apiVersion: v2
     appVersion: 0.12.0
+    created: "2023-04-17T06:45:26.10441878Z"
+    description: NVR With Realtime Object Detection for IP Cameras. Forked from https://github.com/blakeblackshear/blakeshome-charts
+    digest: 593efacc0d869d0af5b4f4f0ee3e559ea88f5c879e080cb33530cd64c0614964
+    home: https://github.com/smarthall/helm-charts/tree/main/charts/frigate
+    icon: https://github.com/blakeblackshear/frigate/blob/master/docs/static/img/frigate.png
+    keywords:
+    - tensorflow
+    - coral
+    - ml
+    maintainers:
+    - email: helm@danielhall.me
+      name: smarthall
+    name: frigate
+    sources:
+    - https://github.com/blakeblackshear/frigate
+    urls:
+    - https://github.com/smarthall/helm-charts/releases/download/frigate-1.0.0/frigate-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 0.12.0
     created: "2023-04-17T06:14:19.203938146Z"
     description: NVR With Realtime Object Detection for IP Cameras. Forked from https://github.com/blakeblackshear/blakeshome-charts
     digest: 4aa4f95a2e9ea29e3a3f37fb6808f91c47fd3a60017df9b823ed600a432f6808
@@ -22,6 +42,19 @@ entries:
     - https://github.com/smarthall/helm-charts/releases/download/frigate-0.12.0/frigate-0.12.0.tgz
     version: 0.12.0
   mealie:
+  - apiVersion: v2
+    appVersion: v1.0.0beta-5
+    created: "2023-04-17T06:45:26.252660364Z"
+    description: A Helm chart for deploying Mealie to a Kubernetes cluster.
+    digest: 024cb7c56c9ed2d37b16c34fbc4d50b9f6664d06b196b866b5eb49e59fb8576c
+    maintainers:
+    - email: helm@danielhall.me
+      name: smarthall
+    name: mealie
+    type: application
+    urls:
+    - https://github.com/smarthall/helm-charts/releases/download/mealie-0.0.8/mealie-0.0.8.tgz
+    version: 0.0.8
   - apiVersion: v2
     appVersion: v1.0.0beta-5
     created: "2023-03-06T10:16:38.80034743Z"
@@ -61,4 +94,4 @@ entries:
     urls:
     - https://github.com/smarthall/helm-charts/releases/download/mealie-0.0.5/mealie-0.0.5.tgz
     version: 0.0.5
-generated: "2023-04-17T06:14:19.203947746Z"
+generated: "2023-04-17T06:45:26.252678664Z"
