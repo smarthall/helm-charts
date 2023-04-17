@@ -7,9 +7,9 @@ strategyType: Recreate
 
 image:
   # -- Docker registry/repository to pull the image from
-  repository: blakeblackshear/frigate
+  repository: ghcr.io/blakeblackshear/frigate
   # -- Overrides the default tag (appVersion) used in Chart.yaml ([Docker Hub](https://hub.docker.com/r/blakeblackshear/frigate/tags?page=1))
-  tag: 0.11.0
+  tag: 0.12.0
   # -- Docker image pull policy
   pullPolicy: IfNotPresent
 
@@ -55,45 +55,13 @@ fullnameOverride: ""
 
 # -- frigate configuration - see [Docs](https://docs.frigate.video/configuration/index) for more info
 config: |
-  mqtt:
-    # Required: host name
-    host: mqtt.server.com
-    # Optional: port (default: shown below)
-    port: 1883
-    # Optional: topic prefix (default: shown below)
-    # WARNING: must be unique if you are running multiple instances
-    topic_prefix: frigate
-    # Optional: client id (default: shown below)
-    # WARNING: must be unique if you are running multiple instances
-    client_id: frigate
-    # Optional: user
-    user: mqtt_user
-    # Optional: password
-    # NOTE: Environment variables that begin with 'FRIGATE_' may be referenced in {}.
-    #       eg. password: '{FRIGATE_MQTT_PASSWORD}'
-    password: password
-    # Optional: interval in seconds for publishing stats (default: shown below)
-    stats_interval: 60
-
-  detectors:
-    # coral:
-    #   type: edgetpu
-    #   device: usb
-    cpu1:
-      type: cpu
-
-  # cameras:
-  #   # Name of your camera
-  #   front_door:
-  #     ffmpeg:
-  #       inputs:
-  #         - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2
-  #           roles:
-  #             - detect
-  #             - rtmp
-  #     width: 1280
-  #     height: 720
-  #     fps: 5
+    mqtt:
+      host: test.mosquitto.org
+      topic_prefix: frigate
+    detectors:
+      cpu1:
+        type: cpu
+    cameras: {}
 
 # Probes configuration
 probes:

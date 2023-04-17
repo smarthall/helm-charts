@@ -21,7 +21,7 @@ NVR With Realtime Object Detection for IP Cameras. Forked from https://github.co
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Set Pod affinity rules |
-| config | string | `"mqtt:\n  # Required: host name\n  host: mqtt.server.com\n  # Optional: port (default: shown below)\n  port: 1883\n  # Optional: topic prefix (default: shown below)\n  # WARNING: must be unique if you are running multiple instances\n  topic_prefix: frigate\n  # Optional: client id (default: shown below)\n  # WARNING: must be unique if you are running multiple instances\n  client_id: frigate\n  # Optional: user\n  user: mqtt_user\n  # Optional: password\n  # NOTE: Environment variables that begin with 'FRIGATE_' may be referenced in {}.\n  #       eg. password: '{FRIGATE_MQTT_PASSWORD}'\n  password: password\n  # Optional: interval in seconds for publishing stats (default: shown below)\n  stats_interval: 60\n\ndetectors:\n  # coral:\n  #   type: edgetpu\n  #   device: usb\n  cpu1:\n    type: cpu\n\n# cameras:\n#   # Name of your camera\n#   front_door:\n#     ffmpeg:\n#       inputs:\n#         - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2\n#           roles:\n#             - detect\n#             - rtmp\n#     width: 1280\n#     height: 720\n#     fps: 5\n"` | frigate configuration - see [Docs](https://docs.frigate.video/configuration/index) for more info |
+| config | string | `"mqtt:\n  host: test.mosquitto.org\n  topic_prefix: frigate\ndetectors:\n  cpu1:\n    type: cpu\ncameras: {}\n"` | frigate configuration - see [Docs](https://docs.frigate.video/configuration/index) for more info |
 | coral.enabled | bool | `false` | enables the use of a Coral device |
 | coral.hostPath | string | `"/dev/bus/usb"` | path on the host to which to mount the Coral device |
 | env | object | `{}` | additional ENV variables to set. Prefix with FRIGATE_ to target Frigate configuration values |
@@ -32,8 +32,8 @@ NVR With Realtime Object Detection for IP Cameras. Forked from https://github.co
 | gpu.nvidia.enabled | bool | `false` | Enables NVIDIA GPU compatibility. Must also use the "amd64nvidia" tagged image |
 | gpu.nvidia.runtimeClassName | string | `nil` | Overrides the default runtimeClassName |
 | image.pullPolicy | string | `"IfNotPresent"` | Docker image pull policy |
-| image.repository | string | `"blakeblackshear/frigate"` | Docker registry/repository to pull the image from |
-| image.tag | string | `"0.11.0"` | Overrides the default tag (appVersion) used in Chart.yaml ([Docker Hub](https://hub.docker.com/r/blakeblackshear/frigate/tags?page=1)) |
+| image.repository | string | `"ghcr.io/blakeblackshear/frigate"` | Docker registry/repository to pull the image from |
+| image.tag | string | `"0.12.0"` | Overrides the default tag (appVersion) used in Chart.yaml ([Docker Hub](https://hub.docker.com/r/blakeblackshear/frigate/tags?page=1)) |
 | imagePullSecrets | list | `[]` | Docker image pull policy |
 | ingress.annotations | object | `{}` | annotations to configure your Ingress. See your Ingress Controller's Docs for more info. |
 | ingress.enabled | bool | `false` | Enables the use of an Ingress Controller to front the Service and can provide HTTPS |

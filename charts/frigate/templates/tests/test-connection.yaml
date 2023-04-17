@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "frigate.fullname" . }}-test-connection"
+  labels:
+    {{- include "frigate.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget-frontend
+      image: busybox
+      command: ['wget']
+      args: ['http://{{ include "frigate.fullname" . }}:{{ .Values.service.port }}/api']
+  restartPolicy: Never
