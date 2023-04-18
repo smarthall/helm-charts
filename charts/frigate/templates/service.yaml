@@ -56,10 +56,14 @@ spec:
       targetPort: rtsp
   {{- end }}
   {{- if .Values.service.webrtc.enabled }}
-    - name: webrtc
+    - name: webrtc-tcp
       port: {{ .Values.service.webrtc.port }}
       protocol: TCP
-      targetPort: webrtc
+      targetPort: webrtc-tcp
+    - name: webrtc-udp
+      port: {{ .Values.service.webrtc.port }}
+      protocol: UDP
+      targetPort: webrtc-udp
   {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "frigate.name" . }}
