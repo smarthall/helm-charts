@@ -2,7 +2,7 @@ apiVersion: v2
 name: mealie
 description: A Helm chart for deploying Mealie to a Kubernetes cluster.
 type: application
-version: 0.0.8
+version: 0.0.9
 appVersion: "v1.0.0beta-5"
 
 maintainers:
