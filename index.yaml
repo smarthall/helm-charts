@@ -3,6 +3,19 @@ entries:
   amt-configure:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-07-16T06:19:55.146786257Z"
+    description: A Helm chart for Kubernetes
+    digest: be5fbcb9f2c708f1278e1e540362048d71a1d7e1790a92516f3f12b5dd335650
+    maintainers:
+    - email: helm@danielhall.me
+      name: smarthall
+    name: amt-configure
+    type: application
+    urls:
+    - https://github.com/smarthall/helm-charts/releases/download/amt-configure-0.1.1/amt-configure-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-07-16T06:04:43.4227489Z"
     description: A Helm chart for Kubernetes
     digest: 1f1b1715d87d83be210b29d67ace002c934b793c5ffd96dc6cc7703f90238368
@@ -188,4 +201,4 @@ entries:
     urls:
     - https://github.com/smarthall/helm-charts/releases/download/mealie-0.0.5/mealie-0.0.5.tgz
     version: 0.0.5
-generated: "2023-07-16T06:12:39.022961943Z"
+generated: "2023-07-16T06:19:55.146814057Z"
