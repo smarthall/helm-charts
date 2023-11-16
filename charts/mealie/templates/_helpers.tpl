@@ -82,10 +82,12 @@ Create the name of the service account to use
     containerPort: {{ .Values.api.service.port }}
     protocol: TCP
   livenessProbe:
+    initialDelaySeconds: 60
     httpGet:
       path: /api/app/about
       port: api
   readinessProbe:
+    initialDelaySeconds: 60
     httpGet:
       path: /api/app/about
       port: api
@@ -114,10 +116,12 @@ Create the name of the service account to use
       containerPort: {{ .Values.frontend.service.port }}
       protocol: TCP
   livenessProbe:
+    initialDelaySeconds: 60
     httpGet:
       path: /
       port: frontend
   readinessProbe:
+    initialDelaySeconds: 60
     httpGet:
       path: /
       port: frontend
